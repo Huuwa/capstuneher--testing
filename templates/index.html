@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Model Deployment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Classification</h1>
+        <form id="prediction-form" method="POST" action="/">
+            <textarea id="text-input" name="text_input" placeholder="Enter text here"></textarea>
+            <button type="submit" id="predict-button">Predict</button>
+        </form>
+        <div id="prediction-result">
+            {% if prediction %}
+                <p>Prediction: {{ prediction }}</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('prediction-form');
+        const textInput = document.getElementById('text-input');
+        const predictionResultContainer = document.getElementById('prediction-result');
+        let predictionDisplayed = false;
+
+        // Submit the form when Enter key is pressed in the text input
+        textInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' && !predictionDisplayed) {
+                event.preventDefault(); // Prevent Enter from adding a new line
+                form.submit(); // Submit the form
+                predictionDisplayed = true;
+            }
+        });
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const text = textInput.value.trim();
+            if (text && !predictionDisplayed) {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                const predictionResult = await response.text();
+                predictionResultContainer.innerHTML = `<p>Prediction: ${predictionResult}</p>`;
+                predictionDisplayed = true;
+            }
+        });
+    </script>
+</body>
+</html>

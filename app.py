@@ -1,7 +1,11 @@
+import warnings
 from flask import Flask, render_template, request
 import joblib
 
 app = Flask(__name__)
+
+# Suppress inconsistent version warnings for scikit-learn
+warnings.filterwarnings("ignore", category=UserWarning, message=".*InconsistentVersionWarning.*")
 
 # Load the pre-trained vectorizer and classifier
 vectorizer = joblib.load('vectorizer.pkl')

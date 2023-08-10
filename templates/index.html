@@ -21,6 +21,7 @@
     <script>
         const form = document.getElementById('prediction-form');
         const textInput = document.getElementById('text-input');
+        const predictButton = document.getElementById('predict-button');
         const predictionResultContainer = document.getElementById('prediction-result');
         let predictionDisplayed = false;
 
@@ -31,6 +32,13 @@
                 form.submit(); // Submit the form
                 predictionDisplayed = true;
             }
+        });
+
+        // Submit the form when Predict button is clicked
+        predictButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default button behavior
+            form.submit(); // Submit the form
+            predictionDisplayed = true;
         });
 
         form.addEventListener('submit', async (event) => {

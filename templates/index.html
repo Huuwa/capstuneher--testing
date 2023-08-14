@@ -12,8 +12,10 @@
             <button type="submit" id="predict-button">Predict</button>
         </form>
         <div id="prediction-result">
-            {% if prediction %}
-                <p>Prediction: {{ prediction }}</p>
+            {% if predictions %}
+                <p>TF-IDF Prediction: {{ predictions.tfidf[0] }} (Confidence: {{ "%.2f"|format(predictions.tfidf[1]) }})</p>
+                <p>BOW Prediction: {{ predictions.bow[0] }} (Confidence: {{ "%.2f"|format(predictions.bow[1]) }})</p>
+                <p>Best Prediction: {{ best_prediction }} (Confidence: {{ "%.2f"|format(predictions[best_prediction][1]) }})</p>
             {% endif %}
         </div>
     </div>

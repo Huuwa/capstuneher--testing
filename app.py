@@ -7,31 +7,45 @@ app = Flask(__name__)
 # Suppress inconsistent version warnings for scikit-learn
 warnings.filterwarnings("ignore", category=UserWarning, message=".*InconsistentVersionWarning.*")
 
-# Load the pre-trained vectorizer and classifier
-vectorizer = joblib.load('vectorizer.pkl')
-classifier1 = joblib.load('classifier.pkl')
+# Load the pre-trained vectorizer and classifiers
+tfidf_vectorizer = joblib.load('tfidf_vectorizer.pkl')
+bow_vectorizer = joblib.load('bow_vectorizer.pkl')
+classifier_tfidf = joblib.load('tfidf_classifier.pkl')
+classifier_bow = joblib.load('bow_classifier.pkl')
 
 # Define prediction function
-def make_prediction(text):
-    text_bow = vectorizer.transform([text])
-    prediction = classifier1.predict(text_bow)
+def make_predictions(text):
+    text_tfidf = tfidf_vectorizer.transform([text])
+    text_bow = bow_vectorizer.transform([text])
+
+    prediction_tfidf = classifier_tfidf.predict(text_tfidf)
+    prediction_bow = classifier_bow.predict(text_bow)
     
+    confidence_tfidf = classifier_tfidf.predict_proba(text_tfidf).max()
+    confidence_bow = classifier_bow.predict_proba(text_bow).max()
+
     labels = {
         0: "hate-speech",
         1: "offensive-speech",
         2: "neither"
     }
-    
-    return labels[prediction[0]]
+
+    return {
+        'tfidf': (labels[prediction_tfidf[0]], confidence_tfidf),
+        'bow': (labels[prediction_bow[0]], confidence_bow)
+    }
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    prediction = None
+    predictions = None
+    best_prediction = None
     if request.method == 'POST':
         text_input = request.form['text_input']
         if text_input:
-            prediction = make_prediction(text_input)
-    return render_template('index.html', prediction=prediction)
+            predictions = make_predictions(text_input)
+            best_prediction = max(predictions, key=lambda k: predictions[k][1])
+
+    return render_template('index.html', predictions=predictions, best_prediction=best_prediction)
 
 if __name__ == '__main__':
     from gunicorn.app.wsgiapp import WSGIApplication

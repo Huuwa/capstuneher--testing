@@ -13,9 +13,20 @@
         </form>
         <div id="prediction-result">
             {% if predictions %}
-                <p>TF-IDF Prediction: {{ predictions.tfidf[0] }} (Confidence: {{ "%.2f"|format(predictions.tfidf[1]) }})</p>
-                <p>BOW Prediction: {{ predictions.bow[0] }} (Confidence: {{ "%.2f"|format(predictions.bow[1]) }})</p>
-                <p>Best Prediction: {{ best_prediction }} (Confidence: {{ "%.2f"|format(predictions[best_prediction][1]) }})</p>
+                <div class="prediction-item">
+                    <p><strong>Baseline Model Predictions:</strong></p>
+                    <p>TF-IDF Prediction: {{ predictions.tfidf[0] }} (Confidence: {{ "%.2f"|format(predictions.tfidf[1]) }})</p>
+                    <p>BoW Prediction: {{ predictions.bow[0] }} (Confidence: {{ "%.2f"|format(predictions.bow[1]) }})</p>
+                </div>
+                <div class="prediction-item">
+                    <p><strong>Deep Learning Model Predictions:</strong></p>
+                    <p>LSTM Prediction: {{ predictions.lstm[0] }} (Confidence: {{ "%.2f"|format(predictions.lstm[1]) }})</p>
+                    <p>GRU Prediction: {{ predictions.gru[0] }} (Confidence: {{ "%.2f"|format(predictions.gru[1]) }})</p>
+                </div>
+                <div class="prediction-item">
+                    <p class="best-prediction"><strong>Best Prediction: {{ best_prediction }}</strong></p>
+                    <p>Confidence: {{ "%.2f"|format(predictions[best_prediction][1]) }}</p>
+                </div>
             {% endif %}
         </div>
     </div>

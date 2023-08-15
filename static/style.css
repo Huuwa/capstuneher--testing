@@ -6,8 +6,11 @@ body {
 }
 
 .container {
-    text-align: center;
-    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 h1 {
@@ -15,7 +18,7 @@ h1 {
 }
 
 textarea {
-    width: 80%;
+    width: 800px; /* Widened the text form */
     height: 100px;
     padding: 10px;
 }
@@ -28,7 +31,19 @@ button {
     cursor: pointer;
 }
 
-.prediction {
+#prediction-result {
     margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between; /* Align predictions in two columns */
+}
+
+.prediction-item {
+    width: 45%; /* Adjusted width for better spacing */
+    margin: 10px;
+}
+
+.best-prediction {
     font-weight: bold;
+    color: #007bff;
 }

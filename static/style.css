@@ -21,6 +21,13 @@ body {
     margin-bottom: 20px;
     text-transform: uppercase;
 }
+.heading2 {
+    color: #4c4c4c;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: -10px;
+}
 
 textarea {
     width: 100%; /* Wider textarea */

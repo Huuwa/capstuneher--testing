@@ -77,7 +77,7 @@ button:hover {
 
 .prediction-item {
     width: 45%; /* Adjusted width for better spacing */
-    margin: 10px;
+    margin: 10px 10px 50px 10px;
     background-color: #f0f0f0; /* Light gray background */
     border-radius: 5px;
     padding: 10px;

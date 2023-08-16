@@ -23,33 +23,41 @@
             <button type="submit" id="predict-button">Predict</button>
         </form>
 
-        <div id="prediction-result" class="luxurious-predictions-best">
-            {% if predictions %}
-                <div class="best-prediction">
-                    <p class="best-prediction-title"><strong>Best Prediction:</strong></p>
-                    <p>{{ get_best_prediction_label(best_prediction) }}</p>
-                    <p><strong>Result:</strong> {{ get_best_prediction_result(predictions[best_prediction][0]) }}</p>
-                    <p><strong>Confidence:</strong> {{ "%.2f"|format(predictions[best_prediction][1]) }}</p>
-                </div>
-            {% endif %}
+        <!-- ... existing HTML ... -->
+
+<!-- ... existing HTML ... -->
+
+<div id="prediction-result" class="luxurious-predictions-best">
+    {% if predictions %}
+        <div class="best-prediction">
+            <p><strong class="highlight-title">Best Prediction</strong></p>
+            <p><strong>Model:</strong> <mark>{{ get_best_prediction_label(best_prediction) }}</mark></p>
+            <p><strong>Result:</strong> <mark>{{ get_best_prediction_result(predictions[best_prediction][0]) }}</mark></p>
+            <p><strong>Confidence:</strong> <mark>{{ "%.2f"|format(predictions[best_prediction][1]) }}</mark></p>
         </div>
-        
+    {% endif %}
+</div>
+
+<div id="prediction-result" class="luxurious-predictions">
+    {% if predictions %}
+        <div class="prediction-item">
+            <p><strong class="highlight-title">Baseline Model Predictions</strong></p>
+            <p>TF-IDF Prediction: <mark>{{ predictions.tfidf[0] }}</mark> (Confidence: <mark>{{ "%.2f"|format(predictions.tfidf[1]) }}</mark>)</p>
+            <p>BoW Prediction: <mark>{{ predictions.bow[0] }}</mark> (Confidence: <mark>{{ "%.2f"|format(predictions.bow[1]) }}</mark>)</p>
+        </div>
+        <div class="prediction-item">
+            <p><strong class="highlight-title">Deep Learning Model Predictions</strong></p>
+            <p>LSTM Prediction: <mark>{{ predictions.lstm[0] }}</mark> (Confidence: <mark>{{ "%.2f"|format(predictions.lstm[1]) }}</mark>)</p>
+            <p>GRU Prediction: <mark>{{ predictions.gru[0] }}</mark> (Confidence: <mark>{{ "%.2f"|format(predictions.gru[1]) }}</mark>)</p>
+        </div>
+    {% endif %}
+</div>
+
+<!-- ... remaining HTML ... -->
 
 
-        <div id="prediction-result" class="luxurious-predictions">
-            {% if predictions %}
-                <div class="prediction-item">
-                    <p><strong>Baseline Model Predictions:</strong></p>
-                    <p>TF-IDF Prediction: {{ predictions.tfidf[0] }} (Confidence: {{ "%.2f"|format(predictions.tfidf[1]) }})</p>
-                    <p>BoW Prediction: {{ predictions.bow[0] }} (Confidence: {{ "%.2f"|format(predictions.bow[1]) }})</p>
-                </div>
-                <div class="prediction-item">
-                    <p><strong>Deep Learning Model Predictions:</strong></p>
-                    <p>LSTM Prediction: {{ predictions.lstm[0] }} (Confidence: {{ "%.2f"|format(predictions.lstm[1]) }})</p>
-                    <p>GRU Prediction: {{ predictions.gru[0] }} (Confidence: {{ "%.2f"|format(predictions.gru[1]) }})</p>
-                </div>
-            {% endif %}
-        </div>
+<!-- ... remaining HTML ... -->
+
     </div>
 
     <footer class="footer">

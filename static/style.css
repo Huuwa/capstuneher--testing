@@ -122,6 +122,25 @@ button:hover {
     font-size: 16px;
 }
 
+/* ... existing CSS ... */
+
+/* Highlighted/marked text styles */
+.highlight-text {
+    background-color: yellow; /* Change to the desired highlight color */
+}
+
+/* ... remaining CSS ... */
+/* ... existing CSS ... */
+
+/* Highlighted title styles */
+.highlight-title {
+    background-color: orange;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* ... remaining CSS ... */
 
 
 

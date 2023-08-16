@@ -213,9 +213,33 @@ button:hover {
 
 /* ... existing CSS ... */
 
+/* ... existing CSS ... */
+
 .team-section {
-    display: none; /* Hide the section initially */
-    margin-top: 30px;
+    display: none;
+    position: fixed;
+    top: 50%; /* Center the section vertically */
+    left: 50%; /* Center the section horizontally */
+    transform: translate(-50%, -50%); /* Centering trick */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.exit-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ... remaining CSS ... */
+
+.team-section table {
+    box-shadow: none; /* Remove shadow from the table */
 }
 
 .team-table {

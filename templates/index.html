@@ -34,6 +34,7 @@
 
 
         <div id="team-section" class="team-section">
+            <span class="exit-icon">&times;</span>
             <table class="team-table">
                 <thead>
                     <tr>
@@ -138,11 +139,17 @@
 
         const teamLink = document.querySelector('.team-link');
         const teamSection = document.getElementById('team-section');
+        const exitIcon = document.querySelector('.exit-icon');
 
         teamLink.addEventListener('click', (event) => {
         event.preventDefault(); // Prevent the link from navigating
         teamSection.style.display = 'block'; // Show the team section
         });
+
+        exitIcon.addEventListener('click', () => {
+            teamSection.style.display = 'none';
+        });
+
 
 
         // Submit the form when Enter key is pressed in the text input

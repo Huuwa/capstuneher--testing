@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
     <header class="header">
@@ -15,6 +17,13 @@
                 <img src="{{ url_for('static', filename='cover.png') }}" alt="Logo">
             </a>
         </div>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" class="team-link">Team</a></li>
+                <li class="nav-item"><a href="#">Report</a></li>
+                <li class="nav-item"><a href="#">Notebook Code</a></li>
+            </ul>
+        </nav>
     </header>
     <div class="container">
         <h1 class="heading">Text Classification</h1>
@@ -23,6 +32,58 @@
             <button type="submit" id="predict-button">Predict</button>
         </form>
 
+
+        <div id="team-section" class="team-section">
+            <table class="team-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>LinkedIn</th>
+                        <th>GitHub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kumail Alawa</td>
+                        <td>alawakumail@gmail.com</td>
+                        <td><a href=" https://www.linkedin.com/in/kumailalawa" target="_blank"><i class="fab fa-linkedin"></i></a></td>
+                        <td><a href="https://github.com/Kumail00Alawa" target="_blank"><i class="fab fa-github"></i></a></td>                        
+                    </tr>
+                    <tr>
+                        <td>Ghadi Babour</td>
+                        <td></td>
+                        <td><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></td>
+                        <td><a href="https://github.com/shathamoh" target="_blank"><i class="fab fa-github"></i></a></td>     
+                    </tr>
+                    <tr>
+                        <td>Sumat Almakahmil</td>
+                        <td></td>
+                        <td><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></td>
+                        <td><a href="#" target="_blank"><i class="fab fa-github"></i></a></td>     
+                    </tr>
+                    <tr>
+                        <td>Hassan Alghanim</td>
+                        <td>Hassangh01001000@gmail.com</td>
+                        <td><a href="https://www.linkedin.com/in/hassan-alghanim" target="_blank"><i class="fab fa-linkedin"></i></a></td>
+                        <td><a href="https://github.com/huuwa" target="_blank"><i class="fab fa-github"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Shatha Alaryani</td>
+                        <td></td>
+                        <td><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></td>
+                        <td><a href="https://github.com/shathamoh" target="_blank"><i class="fab fa-github"></i></a></td>     
+                    </tr>
+                    <tr>
+                        <td>Rahaf Alatiq</td>
+                        <td>rahafalatiq@gmail.com</td>
+                        <td><a href="https://www.linkedin.com/in/rahafalatiq" target="_blank"><i class="fab fa-linkedin"></i></a></td>
+                        <td><a href="#" target="_blank"><i class="fab fa-github"></i></a></td>     
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <!-- ... existing HTML ... -->
 
 <!-- ... existing HTML ... -->
@@ -74,6 +135,15 @@
         const predictButton = document.getElementById('predict-button');
         const predictionResultContainer = document.getElementById('prediction-result');
         let predictionDisplayed = false;
+
+        const teamLink = document.querySelector('.team-link');
+        const teamSection = document.getElementById('team-section');
+
+        teamLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the link from navigating
+        teamSection.style.display = 'block'; // Show the team section
+        });
+
 
         // Submit the form when Enter key is pressed in the text input
         textInput.addEventListener('keydown', (event) => {

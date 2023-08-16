@@ -104,6 +104,26 @@ button:hover {
     height: auto;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    background-color: #1428A0; /* Dark blue background color */
+    color: white; /* Text color */
+    z-index: 9999; /* Ensure the footer is above other content */
+}
+
+.footer-text {
+    font-size: 16px;
+}
+
+
+
 
 /* Media query for responsive design */
 @media (max-width: 768px) {

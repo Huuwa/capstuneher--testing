@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 import pickle
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 # Suppress inconsistent version warnings for scikit-learn
 warnings.filterwarnings("ignore", category=UserWarning, message=".*InconsistentVersionWarning.*")
@@ -67,6 +67,24 @@ def make_gru_predictions(text):
     confidence = np.max(prediction)
     return label, confidence
 
+def get_best_prediction_label(prediction):
+    labels = {
+        'tfidf': 'TF-IDF',
+        'bow': 'BoW',
+        'lstm': 'LSTM',
+        'gru': 'GRU'
+    }
+    return labels.get(prediction, '')
+
+def get_best_prediction_result(prediction):
+    if prediction == 'hate-speech':
+        return 'Hate-Speech'
+    elif prediction == 'offensive-speech':
+        return 'Offensive Speech'
+    elif prediction == 'neither':
+        return 'Neither'
+    else:
+        return 'Unknown'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -85,7 +103,7 @@ def index():
             }
             best_prediction = max(predictions, key=lambda k: predictions[k][1])
             
-    return render_template('index.html', predictions=predictions, best_prediction=best_prediction)
+    return render_template('index.html', predictions=predictions, best_prediction=best_prediction, get_best_prediction_label=get_best_prediction_label, get_best_prediction_result=get_best_prediction_result)
 
 if __name__ == '__main__':
     from gunicorn.app.wsgiapp import WSGIApplication

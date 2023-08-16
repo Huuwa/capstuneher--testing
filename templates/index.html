@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ML Model Deployment</title>
+    <title>Capstone Heroes</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='cover.png') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="header">
+        <div class="logo">
+            <a href=""> <!-- Change 'home' to your route name -->
+                <img src="{{ url_for('static', filename='cover.png') }}" alt="Logo">
+            </a>
+        </div>
+    </header>
     <div class="container">
-        <h1>Text Classification</h1>
+        <h1 class="heading">Text Classification</h1>
         <form id="prediction-form" method="POST" action="/">
-            <textarea id="text-input" name="text_input" placeholder="Enter text here"></textarea>
+            <textarea id="text-input" name="text_input" placeholder="Enter your text here"></textarea>
             <button type="submit" id="predict-button">Predict</button>
         </form>
-        <div id="prediction-result">
+
+        <div id="prediction-result" class="luxurious-predictions-best">
+            {% if predictions %}
+                <div class="best-prediction">
+                    <p class="best-prediction-title"><strong>Best Prediction:</strong></p>
+                    <p>{{ get_best_prediction_label(best_prediction) }}</p>
+                    <p><strong>Result:</strong> {{ get_best_prediction_result(predictions[best_prediction][0]) }}</p>
+                    <p><strong>Confidence:</strong> {{ "%.2f"|format(predictions[best_prediction][1]) }}</p>
+                </div>
+            {% endif %}
+        </div>
+        
+
+
+        <div id="prediction-result" class="luxurious-predictions">
             {% if predictions %}
                 <div class="prediction-item">
                     <p><strong>Baseline Model Predictions:</strong></p>
@@ -22,10 +47,6 @@
                     <p><strong>Deep Learning Model Predictions:</strong></p>
                     <p>LSTM Prediction: {{ predictions.lstm[0] }} (Confidence: {{ "%.2f"|format(predictions.lstm[1]) }})</p>
                     <p>GRU Prediction: {{ predictions.gru[0] }} (Confidence: {{ "%.2f"|format(predictions.gru[1]) }})</p>
-                </div>
-                <div class="prediction-item">
-                    <p class="best-prediction"><strong>Best Prediction: {{ best_prediction }}</strong></p>
-                    <p>Confidence: {{ "%.2f"|format(predictions[best_prediction][1]) }}</p>
                 </div>
             {% endif %}
         </div>

@@ -1,49 +1,118 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f9f6f2; /* Soft beige background */
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .container {
+    margin-top: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     flex-direction: column;
 }
 
-h1 {
-    color: #333;
+.heading {
+    color: #4c4c4c;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 textarea {
-    width: 800px; /* Widened the text form */
-    height: 100px;
-    padding: 10px;
+    width: 100%; /* Wider textarea */
+    max-width: 600px; /* Limit the maximum width */
+    height: 150px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
 }
+
 
 button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 12px 24px;
+    background-color: #5dbea3;
     border: none;
+    border-radius: 5px;
     color: white;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Add border-color transition */
+    margin-left: 265px;
+    margin-top: 10px;
 }
 
-#prediction-result {
-    margin-top: 20px;
+button:hover {
+    background-color: #f9f6f2; /* Change background color on hover */
+    color: #5dbea3;
+    border: 1px solid #5dbea3; /* Add border on hover */
+}
+
+
+
+.luxurious-predictions {
+    margin-top: 30px;
     text-align: center;
     display: flex;
-    justify-content: space-between; /* Align predictions in two columns */
+    justify-content: space-between;
+}
+
+.luxurious-predictions-best {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .prediction-item {
     width: 45%; /* Adjusted width for better spacing */
     margin: 10px;
+    background-color: #f0f0f0; /* Light gray background */
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
 }
 
 .best-prediction {
+    width: 90%; /* Adjusted width for better spacing */
+    margin: 10px;
+    background-color: #f0f0f0; /* Light gray background */
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+
     font-weight: bold;
-    color: #007bff;
+    color: black;
+    margin-top: 10px;
 }
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5%; /* Adjust the height of the header */
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 15%; /* Adjust the width of the logo */
+    height: auto;
+}
+
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    textarea {
+        width: 100%;
+    }
+    
+    .prediction-item {
+        width: 100%;
+    }
+}
+
